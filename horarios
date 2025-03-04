@@ -1,0 +1,7 @@
+/*
+CREATE table empleados (
+    -> nombreapellido TINYTEXT NOT NULL,
+    -> departamento INT NOT NULL
+    -> );
+  ALTER TABLE empleados ADD id_empleados INT NOT NULL;
+*/
