@@ -1,7 +1,116 @@
 /*
-CREATE table empleados (
-    -> nombreapellido TINYTEXT NOT NULL,
-    -> departamento INT NOT NULL
-    -> );
-  ALTER TABLE empleados ADD id_empleados INT NOT NULL;
+show create table empleados;
++-----------+-----------------------------------------------------------------------------------------------------------------------------
+------------------------------------------+
+| Table     | Create Table                                                                                                                
+                                          |
++-----------+-----------------------------------------------------------------------------------------------------------------------------
+------------------------------------------+
+| empleados | CREATE TABLE `empleados` (
+  `nombreapellido` tinytext NOT NULL,
+  `departamento` int NOT NULL,
+  `id_empleados` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 |
++-----------+-----------------------------------------------------------------------------------------------------------------------------
+------------------------------------------+
+
+SHOW tables;
++----------------------------+
+| Tables_in_EddyA214$default |
++----------------------------+
+| detalle_horario            |
+| empleados                  |
+| horario                    |
+| plantilla_detalle_horario  |
++----------------------------+
+
+DESC empleados;
++----------------+----------+------+-----+---------+-------+
+| Field          | Type     | Null | Key | Default | Extra |
++----------------+----------+------+-----+---------+-------+
+| nombreapellido | tinytext | NO   |     | NULL    |       |
+| departamento   | int      | NO   |     | NULL    |       |
+| id_empleados   | int      | NO   |     | NULL    |       |
++----------------+----------+------+-----+---------+-------+
+
+DESC horario;
++--------------+------+------+-----+---------+----------------+
+| Field        | Type | Null | Key | Default | Extra          |
++--------------+------+------+-----+---------+----------------+
+| horario_id   | int  | NO   | PRI | NULL    | auto_increment |
+| plantilla_id | int  | YES  |     | NULL    |                |
++--------------+------+------+-----+---------+----------------+
+
+DESC detalle_horario;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| horario_id         | int         | NO   | PRI | NULL    |       |
+| hora_salida        | date        | NO   | PRI | NULL    |       |
+| hora_entrada       | date        | NO   |     | NULL    |       |
+| codigo_incapacidad | varchar(25) | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+
+DESC plantilla_detalle_horario;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| plantilla_id       | int         | NO   | PRI | NULL    |       |
+| dia                | int         | NO   | PRI | NULL    |       |
+| codigo_incapacidad | varchar(25) | YES  |     | NULL    |       |
+| turno              | varchar(25) | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+
+SELECT * from empleados;
++-----------------+--------------+--------------+
+| nombreapellido  | departamento | id_empleados |
++-----------------+--------------+--------------+
+| Johnn Cenna     |            1 |            1 |
+| Hombre Oceano   |            2 |            2 |
+| Sullyvan        |            3 |            3 |
+| Javiernator3000 |            4 |            4 |
+| Shrek           |            5 |            5 |
+| Ariel           |            6 |            6 |
+| Piña            |            7 |            7 |
+| El Chavo        |            8 |            8 |
+| ElDED           |            9 |            9 |
+| Jacinto         |           10 |           10 |
++-----------------+--------------+--------------+
+
+SELECT * from horario;
++------------+--------------+
+| horario_id | plantilla_id |
++------------+--------------+
+|          1 |            5 |
+|          2 |            1 |
+|          3 |            3 |
+|          4 |            2 |
+|          5 |            4 |
++------------+--------------+
+
+SELECT * from detalle_horario;
+Empty set (0.00 sec)
+
+SELECT * from plantilla_detalle_horario;
++--------------+-----+--------------------+--------+
+| plantilla_id | dia | codigo_incapacidad | turno  |
++--------------+-----+--------------------+--------+
+|            1 |   1 | NULL               | 1/10   |
+|            1 |   2 | NULL               | 1/11,5 |
+|            1 |   3 | NULL               | 1/10   |
+|            1 |   4 | NULL               | 1/11,5 |
+|            1 |   5 | NULL               | 1/10   |
+|            1 |   6 | vacaciones         | NULL   |
+|            1 |   7 | vacaciones         | NULL   |
+|            2 |   1 | NULL               | 2/11,5 |
+|            2 |   2 | NULL               | 1/11,5 |
+|            2 |   3 | NULL               | 2/11,5 |
+|            2 |   4 | NULL               | 1|11.5 |
+|            2 |   5 | NULL               | 1/11,5 |
+|            2 |   6 | vacaciones         | NULL   |
+|            2 |   7 | vacaciones         | NULL   |
+|            3 |   1 | NULL               | 1#8    |
+|            3 |   2 | NULL               | 1.0    |
+|            3 |   3 | viaje_negocios     | NULL   |
++--------------+-----+--------------------+--------+
 */
